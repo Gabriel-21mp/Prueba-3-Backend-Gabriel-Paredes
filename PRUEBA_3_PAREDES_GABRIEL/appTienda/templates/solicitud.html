@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitar Pedido</title>
+</head>
+<body>
+    <h1>Finalizar Solicitud</h1>
+    <p>Complete sus datos para coordinar la entrega.</p>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+
+        <button type="submit" style="background-color: green; color: white; padding: 10px;">
+            CONFIRMAR PEDIDO
+        </button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo</title>
+</head>
+<body>
+    <h1>Catálogo de productos</h1>
+
+    <form method="get">
+        <input type="text" name="filtro" placeholder="Buscar por nombre..." value="{{filtro}}">
+
+        <select name="categoria">
+            <option value="">Todas las categorías</option>
+            {% for c in categorias %}
+                <option value="{{ c.id }}" {% if id_categoria == c.id|stringformat:"s" %}selected{% endif %}>
+                    {{ c.nombre }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Filtrar</button>
+        <a href="/">Limpiar filtro</a>
+    </form>
+
+    <hr>
+
+    <h3>Productos</h3>
+
+    <ul>
+        {% for p in productos %}
+            <li style="margin-bottom: 12px;">
+                <strong>
+                    <a href="{% url 'detalle_producto' p.id %}">{{ p.nombre }}</a>
+                </strong>
+                Precio: ${{ p.precio }}<br>
+                {% if p.imagen_1 %}
+                    <img src="{{ p.imagen_1.url }}" alt="{{ p.nombre }}" width="160">
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>No hay productos</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

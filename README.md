@@ -72,11 +72,4 @@ El sistema cumple con los estándares de seguridad para deploy:
 * Manejo de variables de entorno para datos sensibles.
 * Servidor de archivos estáticos configurado adecuadamente.
 
-## ✅ Cumplimiento de Rúbrica
-- [x] Continuidad del proyecto anterior.
-- [x] Repositorio GitHub público.
-- [x] Vista de reporte protegida con Gráficos (Chart.js).
-- [x] API CRUD Insumos funcional.
-- [x] API Pedidos con restricciones de métodos (No GET colección / No DELETE).
-- [x] API de filtros avanzados con validación de parámetros.
-- [x] Deploy funcional con URL pública y archivos estáticos.
+

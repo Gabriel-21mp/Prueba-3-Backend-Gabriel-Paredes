@@ -2,64 +2,45 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Reporte de Pedidos</title>
+    <title>Reporte de pedidos</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<h1>Reporte de Pedidos por Estado</h1>
-<table border="1" cellpadding="8">
-    <thead>
-        <tr>
-            <th>Estado</th>
-            <th>Total</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in pedidos_por_estado %}
-        <tr>
-            <td>{{ item.estado_pedido }}</td>
-            <td>{{ item.total }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="2">No hay pedidos</td>
-        </tr>
-        {% endfor %}
-    </tbody>
+
+<a href="/admin/">← Volver al Admin</a>
+
+<h1>Reporte de pedidos por estado</h1>
+
+<table border="1" cellpadding="6">
+    <tr>
+        <th>Estado</th>
+        <th>Total</th>
+    </tr>
+    {% for p in pedidos_por_estado %}
+    <tr>
+        <td>{{ p.estado_pedido }}</td>
+        <td>{{ p.total }}</td>
+    </tr>
+    {% endfor %}
 </table>
-<hr>
 
 <canvas id="graficoPedidos" width="400" height="200"></canvas>
 
 <script>
-    const labels = [
-        {% for item in pedidos_por_estado %}
-            "{{ item.estado_pedido }}",
-        {% endfor %}
-    ];
-    const data = [
-        {% for item in pedidos_por_estado %}
-            {{ item.total }},
-        {% endfor %}
-    ];
-    new Chart(document.getElementById("graficoPedidos"), {
-        type: "bar",
-        data: {
-            labels: labels,
-            datasets: [{
-                label: "Cantidad de pedidos",
-                data: data,
-                backgroundColor: "rgba(54, 162, 235, 0.6)"
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
+const data = {
+    labels: [{% for p in pedidos_por_estado %}"{{ p.estado_pedido }}",{% endfor %}],
+    datasets: [{
+        label: 'Pedidos por estado',
+        data: [{% for p in pedidos_por_estado %}{{ p.total }},{% endfor %}],
+        backgroundColor: 'rgba(54, 162, 235, 0.6)'
+    }]
+};
+
+new Chart(document.getElementById('graficoPedidos'), {
+    type: 'bar',
+    data: data
+});
 </script>
+
 </body>
 </html>

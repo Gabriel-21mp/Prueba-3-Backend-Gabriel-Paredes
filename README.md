@@ -1,199 +1,81 @@
-🛒 Prueba N°4 – Tienda Online + API REST
-
-Asignatura: Programación Back End
-Carrera: Ingeniería en Programación e Informática
-Institución: INACAP
-Estudiante: Gabriel Paredes Medina
-
-📌 Descripción General
-
-Este proyecto corresponde a la Prueba N°4 de la asignatura Programación Back End, la cual consiste en extender una tienda online desarrollada previamente (Prueba N°3), incorporando una API REST, un reporte dinámico protegido, y la preparación del sistema para producción y despliegue en la nube.
-
-El sistema permite la gestión completa de productos, insumos y pedidos, combinando vistas tradicionales de Django con endpoints REST, cumpliendo con todos los requisitos indicados en la rúbrica de evaluación.
-
-🧱 Stack Tecnológico
-
-Backend: Django 5.2.6
-
-API REST: Django REST Framework (DRF)
-
-Base de Datos:
-
-PostgreSQL (producción – Render)
-
-SQLite (fallback / desarrollo)
-
-Archivos Estáticos: WhiteNoise
-
-Imágenes / Media: Cloudinary
-
-Deploy: Render
-
-🌐 Deploy en Producción
-
-URL del sistema:
-👉 https://prueba-gabriel.onrender.com/
-
-El sistema se encuentra desplegado en producción, con configuración adecuada para entorno real (DEBUG=False, manejo de estáticos y media).
-
-🔐 Usuario de Prueba (Administración)
-Rol	Usuario	Contraseña
-Administrador	admin	admin
-
-Acceso al panel administrativo:
-
-/admin/
-
-🛍️ Funcionalidades de la Tienda
-Funcionalidades para el Cliente
-
-Visualización de catálogo de productos
-
-Filtro por nombre y categoría
-
-Vista de detalle de producto
-
-Creación de pedidos desde la web
-
-Adjuntar imagen de referencia en pedidos
-
-Seguimiento de pedidos mediante token único
-
-Ruta de seguimiento:
-
-/seguimiento/<token>/
-
-📊 Reporte Dinámico (Vista Protegida)
-
-Ruta:
-
-/reporte/
-
-
-Acceso: solo usuarios autenticados con rol staff / admin
-
-Características del reporte:
-
-Consulta real a la base de datos usando el ORM de Django
-
-Tabla con pedidos agrupados por estado
-
-Gráfico dinámico generado con Chart.js
-
-Información actualizada en tiempo real según los datos existentes
-
-Este reporte cumple con el requisito de vista protegida + datos reales + visualización gráfica.
-
-🔌 API REST – Django REST Framework
-📦 API 1 – CRUD Completo de Insumos
-
-Endpoint base:
-
-/api/insumos/
-
-Método	Endpoint	Descripción
-GET	/api/insumos/	Listar insumos
-POST	/api/insumos/	Crear insumo
-GET	/api/insumos/{id}/	Obtener detalle
-PUT / PATCH	/api/insumos/{id}/	Actualizar
-DELETE	/api/insumos/{id}/	Eliminar
-
-CRUD completo implementado mediante ModelViewSet.
-
-🧾 API 2 – Pedidos con Restricciones
-
-Endpoint base:
-
-/api/pedidos/
-
-Método	Estado
-POST	✅ Permitido
-PUT / PATCH	✅ Permitido
-GET (listar)	❌ Bloqueado
-DELETE	❌ Bloqueado
-
-Las operaciones GET (listado) y DELETE están bloqueadas explícitamente retornando HTTP 405, cumpliendo con la rúbrica.
-
-🔍 API 3 – Filtro Avanzado de Pedidos
-
-Endpoint:
-
-/api/pedidos/filtrar/
-
-
-Parámetros soportados:
-
-estado → estado del pedido
-
-desde → fecha inicio (YYYY-MM-DD)
-
-hasta → fecha término (YYYY-MM-DD)
-
-limit → límite de resultados (1 a 200)
-
-Ejemplos de uso:
-
-/api/pedidos/filtrar/?estado=ENTREGADO
-/api/pedidos/filtrar/?desde=2025-12-01&hasta=2025-12-31&limit=10
-
-
-Este endpoint permite consultar pedidos sin exponer el listado general, cumpliendo el requerimiento de filtros avanzados.
-
-⚙️ Configuración de Producción
-
-El sistema está configurado para producción con:
-
-DEBUG = False
-
-ALLOWED_HOSTS configurado correctamente
-
-Archivos estáticos servidos con WhiteNoise
-
-Archivos multimedia gestionados con Cloudinary
-
-Variables sensibles manejadas mediante variables de entorno
-
-Base de datos operativa en entorno productivo
-
-🗂️ Estructura General del Proyecto
-PRUEBA_3_PAREDES_GABRIEL/
-│
-├── appTienda/
-│   ├── api/
-│   │   ├── views.py
-│   │   ├── serializers.py
-│   │   └── urls.py
-│   ├── models.py
-│   ├── views.py
-│   ├── forms.py
-│   └── admin.py
-│
-├── templates/
-│   ├── catalogo.html
-│   ├── detalle_producto.html
-│   ├── solicitud.html
-│   ├── seguimiento.html
-│   └── reporte.html
-│
-├── static/
-├── manage.py
-├── requirements.txt
-└── README.md
-
-✅ Cumplimiento de Rúbrica
-
-✔ Uso de Django y Django REST Framework
-
-✔ CRUD completo para Insumos
-
-✔ API de Pedidos con restricciones de métodos
-
-✔ Endpoint de filtros avanzados
-
-✔ Reporte dinámico con ORM + Chart.js
-
-✔ Vista protegida (solo admin / staff)
-
-✔ Configuración lista para producción
-
-✔ Deploy funcional en la nube
+# 🛒 Prueba N°4 – Tienda Online + API REST
+
+[cite_start]**Asignatura:** Programación Back End [cite: 2]  
+**Carrera:** Ingeniería en Programación e Informática  
+**Institución:** INACAP  
+**Estudiante:** Gabriel Paredes Medina
+
+---
+
+## 📌 Descripción General
+[cite_start]Este proyecto corresponde a la **Evaluación Sumativa 4** de la asignatura Programación Back End[cite: 1]. [cite_start]Consiste en la extensión de una tienda online desarrollada previamente, incorporando una **API REST**, un **reporte dinámico protegido**, y el **despliegue (deploy)** del sistema en un entorno de producción real[cite: 11, 12, 17].
+
+[cite_start]El sistema permite la gestión completa de productos, insumos y pedidos, cumpliendo con todos los requisitos de la rúbrica oficial[cite: 19].
+
+## 🧱 Stack Tecnológico
+* [cite_start]**Backend:** Django 5.x [cite: 6]
+* [cite_start]**API REST:** Django REST Framework (DRF) [cite: 7, 16]
+* [cite_start]**Base de Datos:** PostgreSQL (Producción) / SQLite (Desarrollo) [cite: 37, 67]
+* [cite_start]**Archivos Estáticos:** WhiteNoise [cite: 67]
+* [cite_start]**Imágenes / Media:** Cloudinary [cite: 67]
+* [cite_start]**Deploy:** Render [cite: 33]
+
+## 🌐 Deploy en Producción
+La aplicación se encuentra operativa y accesible al público en el siguiente enlace:  
+[cite_start]👉 **[https://prueba-gabriel.onrender.com/](https://prueba-gabriel.onrender.com/)** [cite: 39]
+
+## 🔐 Credenciales de Prueba (Administración)
+[cite_start]Para acceder al panel administrativo y a las vistas protegidas: [cite: 73]
+
+| Rol | Usuario | Contraseña |
+| :--- | :--- | :--- |
+| **Administrador** | `admin` | `admin` |
+
+* [cite_start]**URL Admin:** `/admin/` [cite: 40]
+
+---
+
+## 📊 Reporte Dinámico (Vista Protegida)
+* [cite_start]**Ruta:** `/reporte/` [cite: 67]
+* [cite_start]**Acceso:** Restringido a usuarios autenticados (Staff/Admin)[cite: 28].
+* **Características:**
+    * [cite_start]Consultas reales mediante el **ORM de Django**[cite: 27].
+    * [cite_start]Visualización de datos mediante **tablas y gráficos dinámicos** (Chart.js)[cite: 30].
+    * [cite_start]Métricas de pedidos agrupados por estado[cite: 22].
+
+## 🔌 API REST – Django REST Framework
+[cite_start]Se han implementado tres APIs siguiendo las restricciones de la rúbrica: [cite: 43]
+
+### 📦 API 1 – CRUD de Insumos
+[cite_start]**Endpoint:** `/api/insumos/` [cite: 46]
+[cite_start]Permite la gestión completa de materias primas (Crear, Listar, Ver detalle, Modificar y Eliminar)[cite: 47].
+
+### 🧾 API 2 – Pedidos con Restricciones
+[cite_start]**Endpoint:** `/api/pedidos/` [cite: 49]
+* [cite_start]✅ **Permitido:** Crear (POST) y Modificar (PUT/PATCH)[cite: 50].
+* [cite_start]❌ **Bloqueado:** Listado general (GET) y Eliminación (DELETE)[cite: 52, 53].
+
+### 🔍 API 3 – Filtro Avanzado de Pedidos
+[cite_start]**Endpoint:** `/api/pedidos/filtrar/` [cite: 55]
+[cite_start]Soporta los siguientes parámetros de consulta: [cite: 56]
+* [cite_start]`desde` / `hasta`: Rango de fechas (YYYY-MM-DD)[cite: 57].
+* [cite_start]`estado`: Filtro por estado del pedido[cite: 58].
+* [cite_start]`limit`: Cantidad máxima de resultados[cite: 59].
+
+---
+
+## ⚙️ Configuración de Producción
+[cite_start]El sistema cumple con los estándares de seguridad para deploy: [cite: 67]
+* `DEBUG = False`
+* `ALLOWED_HOSTS` configurado para el dominio de Render.
+* Manejo de variables de entorno para datos sensibles.
+* Servidor de archivos estáticos configurado.
+
+## ✅ Cumplimiento de Rúbrica
+- [x] [cite_start]Continuidad del proyecto anterior [cite: 67]
+- [x] [cite_start]Repositorio GitHub público [cite: 67]
+- [x] [cite_start]Vista de reporte protegida con Gráficos [cite: 67]
+- [x] [cite_start]API CRUD Insumos [cite: 67]
+- [x] [cite_start]API Pedidos con restricciones (no list/delete) [cite: 67]
+- [x] [cite_start]API de filtros avanzados con validación [cite: 67]
+- [x] [cite_start]Deploy funcional con URL pública [cite: 67]

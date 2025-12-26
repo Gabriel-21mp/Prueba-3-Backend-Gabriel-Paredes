@@ -1,18 +1,8 @@
 {% extends "admin/base.html" %}
-{% load static %}
-
-{% block branding %}
-<h1 id="site-name">
-    <a href="{% url 'admin:index' %}">
-        Administración Tienda
-    </a>
-</h1>
-{% endblock %}
 
 {% block nav-global %}
 <div style="padding: 10px;">
-    <a href="{% url 'reporte_pedidos' %}"
-        style="font-weight: bold; color: #0a58ca;">
+    <a href="{% url 'reporte_pedidos' %}" style="font-weight: bold;">
         Ver reporte de pedidos
     </a>
 </div>

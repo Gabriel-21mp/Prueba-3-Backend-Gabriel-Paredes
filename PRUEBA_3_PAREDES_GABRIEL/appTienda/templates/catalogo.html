@@ -7,6 +7,40 @@
 <body>
     <h1>Catálogo de productos</h1>
 
+
+
+        <hr>
+
+    <h3>Seguimiento de Pedido</h3>
+
+    <form id="formSeguimiento" onsubmit="return irASeguimiento();" style="margin-bottom: 20px;">
+    <input
+        type="text"
+        id="tokenInput"
+        placeholder="Ingresa tu token de seguimiento"
+        required
+        style="padding:8px; width:260px;"
+    />
+    <button type="submit" style="padding:8px 12px;">
+        Ver seguimiento
+    </button>
+    </form>
+
+    <script>
+    function irASeguimiento() {
+        const token = document.getElementById("tokenInput").value.trim();
+        if (!token) return false;
+        window.location.href = "/seguimiento/" + encodeURIComponent(token) + "/";
+        return false;
+    }
+    </script>
+
+    <hr>
+
+
+    
+
+    
     <form method="get">
         <input type="text" name="filtro" placeholder="Buscar por nombre..." value="{{filtro}}">
 
@@ -44,3 +78,4 @@
     </ul>
 </body>
 </html>
+

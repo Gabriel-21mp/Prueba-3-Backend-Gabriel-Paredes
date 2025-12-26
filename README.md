@@ -49,6 +49,7 @@ Se han implementado tres APIs siguiendo las restricciones de la rúbrica:
 ### 📦 API 1 – CRUD de Insumos
 **Endpoint:** `/api/insumos/`
 Permite la gestión completa de materias primas (Crear, Listar, Ver detalle, Modificar y Eliminar).
+para poder eliminar o editar es necesario escribir el id del producto "/api/insumos/(ID)"
 
 ### 🧾 API 2 – Pedidos con Restricciones
 **Endpoint:** `/api/pedidos/`

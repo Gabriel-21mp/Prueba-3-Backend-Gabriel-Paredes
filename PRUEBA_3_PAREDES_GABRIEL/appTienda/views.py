@@ -1,6 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Producto, Categoria
 from .forms import PedidoForm
+from django.contrib.admin.views.decorators import staff_member_required
+from django.db.models import Count
+from .models import Pedido
+from django.shortcuts import render
+
 
 
 
@@ -68,3 +73,19 @@ def detalle_seguimiento(request, token):
     from .models import Pedido
     pedido = get_object_or_404(Pedido, token_seguimiento=token)
     return render(request, 'seguimiento.html', {'pedido': pedido})
+
+
+
+@staff_member_required
+def reporte_pedidos(request):
+    # Agrupar pedidos por estado
+    pedidos_por_estado = (
+        Pedido.objects
+        .values("estado_pedido")
+        .annotate(total=Count("id"))
+        .order_by("estado_pedido")
+    )
+    return render(request, "reporte.html", {
+        "pedidos_por_estado": pedidos_por_estado
+    })
+

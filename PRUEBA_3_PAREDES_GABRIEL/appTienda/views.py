@@ -78,14 +78,19 @@ def detalle_seguimiento(request, token):
 
 @staff_member_required
 def reporte_pedidos(request):
-    # Agrupar pedidos por estado
+    estado = request.GET.get("estado")
+    pedidos = Pedido.objects.all()
+    if estado:
+        pedidos = pedidos.filter(estado_pedido=estado)
     pedidos_por_estado = (
-        Pedido.objects
+        pedidos
         .values("estado_pedido")
         .annotate(total=Count("id"))
         .order_by("estado_pedido")
     )
     return render(request, "reporte.html", {
-        "pedidos_por_estado": pedidos_por_estado
+        "pedidos_por_estado": pedidos_por_estado,
+        "estado_seleccionado": estado,
+        "estados": [e[0] for e in Pedido._meta.get_field("estado_pedido").choices],
     })
 

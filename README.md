@@ -1,6 +1,6 @@
 # 🛒 Prueba N°4 – Tienda Online + API REST
 
-[cite_start]**Asignatura:** Programación Back End 
+**Asignatura:** Programación Back End 
 **Carrera:** Ingeniería en Programación e Informática  
 **Institución:** INACAP  
 **Estudiante:** Gabriel Paredes Medina
